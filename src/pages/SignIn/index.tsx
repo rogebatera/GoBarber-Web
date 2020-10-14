@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, useContext} from 'react';
+import React, {useRef, useCallback} from 'react';
 import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi'
@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors'
 
-import {AuthContext} from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface SignInFormData{
     email: string;
@@ -20,7 +20,9 @@ const SignIn:React.FC = () => {
 
     const formRef = useRef<FormHandles>(null);
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn } = useAuth();
+
+    // console.log(user);
 
     const handleSubmit = useCallback(async (data:SignInFormData) => {
         try {
@@ -76,11 +78,12 @@ const SignIn:React.FC = () => {
                     <a href="forgot">Esqueci minha Senha</a>
                 </Form>
 
-                <a href="#">
+                <a href="dsada">
                     <FiLogIn />
                     Criar Conta
                 </a>
             </Content>
+
             <Background />
 
         </Container>
